@@ -9,8 +9,10 @@ export default function Homepage() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   return (
+    //  linear-gradient(329deg, #090a0a 0%, #ffc049 100%);
+
     <div>
-      <main className="bg-neutral-950 px-10 md:px-20 lg:px-40">
+      <main className="bg-gradient-to-b from-[#ffc049] to-[#000000] px-10 md:px-20 lg:px-40">
         <section className="min-h-screen">
           <Navbar showLoginModal={() => setShowLoginModal(true)} />
           <div className="flex flex-col mt-10 lg:flex-row lg:justify-evenly">

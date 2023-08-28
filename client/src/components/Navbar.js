@@ -9,11 +9,11 @@ export default function Navbar({ showLoginModal }) {
         <img src={Logo} className="w-32" alt="logo" />
       </a>
       <ul className="flex items-center">
-        <p className="text-slate-200 py-2 px-3 font-boldfont-poppins">|</p>
+        <p className="text-gray-900 py-2 px-3 font-boldfont-poppins">|</p>
         <li>
           <button
             onClick={() => showLoginModal()}
-            className=" text-slate-200 py-2 px-3 font-mediumfont-poppins"
+            className=" text-gray-900 py-2 px-3 font-mediumfont-poppins"
           >
             Log In
             {/* {Auth.loggedIn() ? 'Dashboard' : 'Log In'} */}
