@@ -1,4 +1,6 @@
 # NerdVault
+<img src="https://img.shields.io/badge/License-MIT-blue"></img>
+<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/mondragonSaiz/NerdVault?color=lightblue">
 The app that all action figure collectors app - Keep track of your collection at all times!
 <div align="center"> <h2>Dependencies</h2> </div>
 
