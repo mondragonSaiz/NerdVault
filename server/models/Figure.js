@@ -6,7 +6,7 @@ const figureSchema = new Schema({
     type: String,
     required: true,
   },
-  collection: {
+  saga: {
     type: String,
     required: true,
   },
