@@ -20,7 +20,10 @@ export default function Homepage() {
       // Handle the error here
       console.error('ERROR**', error);
 
-      if (error.message.includes('Incorrect credentials')) {
+      if (
+        error.message.includes('No user found with this email address') ||
+        error.message.includes('Incorrect credentials')
+      ) {
         setAlertMessage('Incorrect email or password. Please try again.');
         setShowAlert(true);
       }
