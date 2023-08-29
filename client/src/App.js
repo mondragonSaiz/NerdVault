@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 // import 'tailwindcss/tailwind.css';
 import Homepage from './pages/Homepage';
-import Login from './pages/Login';
+import MainPage from './pages/MainPage';
+
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
@@ -39,7 +40,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<Login />} />
+
+          <Route path="/main-page" element={<MainPage />} />
         </Routes>
       </Router>
     </ApolloProvider>

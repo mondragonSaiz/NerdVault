@@ -4,10 +4,38 @@ import CustomModal from '../components/CustomModal';
 import inboxLogo from '../img/dragonballLogo.svg';
 // import gokuLogo from '../img/gokuLogo.svg';
 // import { Link } from 'react-router-dom';
-
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 export default function Homepage() {
+  const [formState, setFormState] = useState({ email: '', password: '' });
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const handleInputLoginChange = (e) => {
+    const { name, value } = e.target;
+    setFormState({ ...formState, [name]: value });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      email: '',
+      password: '',
+    });
+  };
   return (
     //  linear-gradient(329deg, #090a0a 0%, #ffc049 100%);
 
@@ -73,12 +101,14 @@ export default function Homepage() {
           <h3 className="mb-4 text-xl font-medium text-gray-900">
             Sign in and keep collecting!
           </h3>
-          <form className="space-y-6" action="#">
+          <form onSubmit={handleFormSubmit} className="space-y-6" action="#">
             <div>
               <label htmlFor="email" className=""></label>{' '}
               <input
                 type="email"
                 name="email"
+                value={formState.email}
+                onChange={handleInputLoginChange}
                 id="email"
                 className="bg-gra-50 border border-gray-300 text-gray-900 text-sm 
                 rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
@@ -91,6 +121,8 @@ export default function Homepage() {
               <input
                 type="password"
                 name="password"
+                value={formState.password}
+                onChange={handleInputLoginChange}
                 id="password"
                 className="bg-gra-50 border border-gray-300 text-gray-900 text-sm 
                 rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
