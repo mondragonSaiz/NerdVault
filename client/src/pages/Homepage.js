@@ -12,7 +12,7 @@ export default function Homepage() {
     //  linear-gradient(329deg, #090a0a 0%, #ffc049 100%);
 
     <div>
-      <main className="bg-gradient-to-b from-[#ffc049] to-[#000000] px-10 md:px-20 lg:px-40">
+      <main className="bg-gradient-to-t from-orange-500 to-[#000000] px-10 md:px-20 lg:px-40">
         <section className="min-h-screen">
           <Navbar showLoginModal={() => setShowLoginModal(true)} />
           <div className="flex flex-col mt-10 lg:flex-row lg:justify-evenly">
@@ -27,7 +27,7 @@ export default function Homepage() {
                 <strong>Your Figures</strong> <strong>Our App</strong>.
               </p>
               <p className="text-slate-200 font-normal mt-2 w-4/6 lg:text-lg lg:w-11/12 font-poppins">
-                <strong>NerdVault</strong> your collection - in one place.
+                <strong>NerdVault</strong>, your collection - in one place.
               </p>
               <div className="mt-10 flex">
                 <button
@@ -51,13 +51,13 @@ export default function Homepage() {
                 .
               </p>
             </div> */}
-            <div className="hover:transition hover:scale-125 transition duration-300 ease-in-out">
+            <div className="hover:transition hover:scale-125 transition duration-300 ease-in-out pb-5">
               <img
                 src={inboxLogo}
                 alt="avatar3"
                 className="w-64 h-50 lg:w-52 mb-2 sm:w-44"
               />
-              <p className=" text-slate-200 font-thin text-center lg:text-sm">
+              <p className=" text-gray-900 font-thin text-center lg:text-sm">
                 Your collection{' '}
                 <strong className="font-bold ">organized</strong>.
               </p>
@@ -75,7 +75,7 @@ export default function Homepage() {
           </h3>
           <form className="space-y-6" action="#">
             <div>
-              <label for="email" className=""></label>{' '}
+              <label htmlFor="email" className=""></label>{' '}
               <input
                 type="email"
                 name="email"
@@ -87,7 +87,7 @@ export default function Homepage() {
               ></input>
             </div>
             <div>
-              <label for="password" className=""></label>{' '}
+              <label htmlFor="password" className=""></label>{' '}
               <input
                 type="password"
                 name="password"
@@ -131,7 +131,7 @@ export default function Homepage() {
           </h3>
           <form className="space-y-6" action="#">
             <div>
-              <label for="username" className=""></label>{' '}
+              <label htmlFor="username" className=""></label>{' '}
               <input
                 type="username"
                 name="username"
@@ -143,7 +143,7 @@ export default function Homepage() {
               ></input>
             </div>
             <div>
-              <label for="email" className=""></label>{' '}
+              <label htmlFor="email" className=""></label>{' '}
               <input
                 type="email"
                 name="email"
@@ -155,7 +155,7 @@ export default function Homepage() {
               ></input>
             </div>
             <div>
-              <label for="password" className=""></label>{' '}
+              <label htmlFor="password" className=""></label>{' '}
               <input
                 type="password"
                 name="password"
@@ -167,7 +167,7 @@ export default function Homepage() {
               ></input>
             </div>
             <div>
-              <label for="confirmPassword" className=""></label>{' '}
+              <label htmlFor="confirmPassword" className=""></label>{' '}
               <input
                 type="confirmPassword"
                 name="confirmPassword"
