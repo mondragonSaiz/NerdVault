@@ -8,6 +8,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import AlertModal from '../components/AlertModal';
 import Auth from '../utils/auth';
+import { Link } from 'react-router-dom';
 export default function Homepage() {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -19,17 +20,24 @@ export default function Homepage() {
       // Handle the error here
       console.error('ERROR**', error);
 
-      if (error) {
-        setAlertMessage(
-          'Could not authenticate user. Please check your credentials.'
-        );
+      if (error.message.includes('Incorrect credentials')) {
+        setAlertMessage('Incorrect email or password. Please try again.');
         setShowAlert(true);
       }
+
+      // if (error) {
+      //   setAlertMessage(
+      //     'Could not authenticate user. Please check your credentials.'
+      //   );
+      //   setShowAlert(true);
+      // }
     },
     onCompleted: (data) => {
       // Handle successful login here
       console.log(data);
-      Auth.login(data.login.token);
+      if (data && data.login && data.login.token) {
+        Auth.login(data.login.token);
+      }
     },
   });
   const handleInputLoginChange = (e) => {
@@ -48,6 +56,7 @@ export default function Homepage() {
       // Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
+      return;
     }
 
     // clear form values
@@ -78,12 +87,21 @@ export default function Homepage() {
                 <strong>NerdVault</strong>, your collection - in one place.
               </p>
               <div className="mt-10 flex">
-                <button
-                  onClick={() => setShowSignUpModal(true)}
-                  className=" bg-slate-200 text-neutral-950 hover:text-orange-500  hover:bg-orange-200 py-2 px-6 font-bold font-poppins rounded-lg lg:text-lg cursor-pointer hover:scale-125 transition duration-300 ease-in-out"
-                >
-                  Get Started
-                </button>
+                {!Auth.loggedIn ? (
+                  <button
+                    onClick={() => setShowSignUpModal(true)}
+                    className=" bg-slate-200 text-neutral-950 hover:text-orange-500  hover:bg-orange-200 py-2 px-6 font-bold font-poppins rounded-lg lg:text-lg cursor-pointer hover:scale-125 transition duration-300 ease-in-out"
+                  >
+                    Get Started
+                  </button>
+                ) : (
+                  <Link
+                    to="/main-page"
+                    className=" bg-slate-200 text-neutral-950 hover:text-orange-500  hover:bg-orange-200 py-2 px-6 font-bold font-poppins rounded-lg lg:text-lg cursor-pointer hover:scale-125 transition duration-300 ease-in-out"
+                  >
+                    Get Started
+                  </Link>
+                )}
               </div>
             </div>
           </div>

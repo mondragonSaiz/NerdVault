@@ -8,7 +8,7 @@ export default function AlertModal({ isVisible, onClose, children, bgColor }) {
   return (
     <div
       onClick={handleClose}
-      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-start place-self-start mt-2"
+      className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-start place-self-start mt-2 px-2"
       id="wrapper"
     >
       <div className="w-[600px]  flex flex-col">
