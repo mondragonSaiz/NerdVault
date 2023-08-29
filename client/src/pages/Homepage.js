@@ -6,12 +6,32 @@ import inboxLogo from '../img/dragonballLogo.svg';
 // import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import AlertModal from '../components/AlertModal';
 import Auth from '../utils/auth';
 export default function Homepage() {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [login, { error, data }] = useMutation(LOGIN_USER, {
+    onError: (error) => {
+      // Handle the error here
+      console.error('ERROR**', error);
+
+      if (error) {
+        setAlertMessage(
+          'Could not authenticate user. Please check your credentials.'
+        );
+        setShowAlert(true);
+      }
+    },
+    onCompleted: (data) => {
+      // Handle successful login here
+      console.log(data);
+      Auth.login(data.login.token);
+    },
+  });
   const handleInputLoginChange = (e) => {
     const { name, value } = e.target;
     setFormState({ ...formState, [name]: value });
@@ -25,9 +45,9 @@ export default function Homepage() {
         variables: { ...formState },
       });
 
-      Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
+      // Auth.login(data.login.token);
+    } catch (err) {
+      console.error(err);
     }
 
     // clear form values
@@ -233,6 +253,14 @@ export default function Homepage() {
           </form>
         </div>
       </CustomModal>
+
+      <AlertModal
+        isVisible={showAlert}
+        onClose={() => setShowAlert(false)}
+        bgColor="red-500"
+      >
+        <h1>{alertMessage}</h1>
+      </AlertModal>
     </div>
   );
 }
