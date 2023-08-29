@@ -27,7 +27,8 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
       } catch (err) {
-        console.log(err);
+        console.log('Login Error:', err);
+        throw err;
       }
     },
     addUser: async (parent, { username, email, password }) => {
