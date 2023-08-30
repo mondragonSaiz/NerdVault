@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import CustomModal from '../components/CustomModal';
 import inboxLogo from '../img/dragonballLogo.svg';
@@ -9,18 +9,90 @@ import { LOGIN_USER } from '../utils/mutations';
 import AlertModal from '../components/AlertModal';
 import Auth from '../utils/auth';
 import { Link } from 'react-router-dom';
+import gokuPic from '../img/profilepic/goku-pp.png';
+import videlPic from '../img/profilepic/videl-pp.png';
+import majinbPic from '../img/profilepic/majinb-pp.png';
+import vegetaPic from '../img/profilepic/vegeta-pp.png';
+import android17Pic from '../img/profilepic/android17-pp.png';
+import android16Pic from '../img/profilepic/android16-pp.png';
+import android18Pic from '../img/profilepic/android18-pp.png';
+import gokublackPic from '../img/profilepic/gokublack-pp.png';
+import trunksPic from '../img/profilepic/trunks-pp.png';
+import gohanPic from '../img/profilepic/gohan-pp.png';
+import chaoPic from '../img/profilepic/chao-pp.png';
+import bulmaPic from '../img/profilepic/bulma-pp.png';
 export default function Homepage() {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
+  const [userIcon, setUserIcon] = useState('');
+
+  const handleImageClick = (src) => {
+    setUserIcon(src);
+  };
+  useEffect(() => {}, [userIcon]);
+  const userIcons = [
+    {
+      name: 'gokuPic',
+      src: gokuPic,
+    },
+    {
+      name: 'android18Pic',
+      src: android18Pic,
+    },
+    {
+      name: 'videlPic',
+      src: videlPic,
+    },
+    {
+      name: 'gohanPic',
+      src: gohanPic,
+    },
+    {
+      name: 'majinbPic',
+      src: majinbPic,
+    },
+    {
+      name: 'vegetaPic',
+      src: vegetaPic,
+    },
+    {
+      name: 'android17Pic',
+      src: android17Pic,
+    },
+    {
+      name: 'gokublackPic',
+      src: gokublackPic,
+    },
+    {
+      name: 'trunksPic',
+      src: trunksPic,
+    },
+    {
+      name: 'bulmaPic',
+      src: bulmaPic,
+    },
+    {
+      name: 'android16Pic',
+      src: android16Pic,
+    },
+
+    {
+      name: 'chaoPic',
+      src: chaoPic,
+    },
+  ];
   const [login, { error, data }] = useMutation(LOGIN_USER, {
     onError: (error) => {
       // Handle the error here
       console.error('ERROR**', error);
 
-      if (error.message.includes('Incorrect credentials')) {
+      if (
+        error.message.includes('No user found with this email address') ||
+        error.message.includes('Incorrect credentials')
+      ) {
         setAlertMessage('Incorrect email or password. Please try again.');
         setShowAlert(true);
       }
@@ -87,12 +159,12 @@ export default function Homepage() {
                 <strong>NerdVault</strong>, your collection - in one place.
               </p>
               <div className="mt-10 flex">
-                {!Auth.loggedIn ? (
+                {!Auth.loggedIn() ? (
                   <button
                     onClick={() => setShowSignUpModal(true)}
                     className=" bg-slate-200 text-neutral-950 hover:text-orange-500  hover:bg-orange-200 py-2 px-6 font-bold font-poppins rounded-lg lg:text-lg cursor-pointer hover:scale-125 transition duration-300 ease-in-out"
                   >
-                    Get Started
+                    Get started
                   </button>
                 ) : (
                   <Link
@@ -203,7 +275,7 @@ export default function Homepage() {
             <div>
               <label htmlFor="username" className=""></label>{' '}
               <input
-                type="username"
+                type="text"
                 name="username"
                 id="username"
                 className="bg-gra-50 border border-gray-300 text-gray-900 text-sm 
@@ -248,6 +320,24 @@ export default function Homepage() {
                 required
               ></input>
             </div>
+            <p className=" text-gray-400 flex justify-center text-lg font-bold">
+              Choose your avatar
+            </p>
+            <div className=" h-[300px] flex  md:flex-row md:flex-wrap md:gap-10 justify-center items-center max-[420px]:flex-row max-[420px]:flex-wrap max-[420px]:w-[300px] lg:flex-row lg:gap-6 overflow-auto">
+              {userIcons.map((icon, index) => (
+                <div
+                  key={index}
+                  className={`bg-slate-200 rounded-full lg:w-40 lg:h-30 w-60 h-30 mt-10 max-[420px]:h-30 max-[420px]:w-40
+                    overflow-hidden hover:transition hover:scale-110 transition
+                    duration-300 ease-in-out cursor-pointer${
+                      icon.src === userIcon ? ' selected' : ''
+                    }`}
+                  onClick={() => handleImageClick(icon.src)}
+                >
+                  <img src={icon.src} alt={icon.name} />
+                </div>
+              ))}
+            </div>
             <button
               type="submit"
               className="w-full text-white bg-orange-700 hover:bg-orange-800 
@@ -271,7 +361,6 @@ export default function Homepage() {
           </form>
         </div>
       </CustomModal>
-
       <AlertModal
         isVisible={showAlert}
         onClose={() => setShowAlert(false)}
@@ -279,6 +368,18 @@ export default function Homepage() {
       >
         <h1>{alertMessage}</h1>
       </AlertModal>
+      <style>
+        {`
+          .selected {
+            outline: 4px solid orange;
+            transform: scale(1.1)
+          }
+          .selectedImage {
+            border: 2px solid green;
+          }
+        `}
+      </style>
+        
     </div>
   );
 }
