@@ -28,14 +28,20 @@ export default function Navbar({ showLoginModal }) {
           <li>
             <a
               href="#"
-              className=" text-slate-200 py-2 px-3 rounded-lg font-mediumfont-poppins hover:bg-slate-200 hover:text-gray-900"
+              className=" text-slate-200 py-2 px-3 rounded-lg font-mediumfont-poppins hover:bg-orange-200 hover:text-gray-900 max-[420px]:text-sm"
+            >
+              Collection
+            </a>
+            <a
+              href="#"
+              className=" text-slate-200 py-2 px-3 rounded-lg font-mediumfont-poppins hover:bg-blue-200 hover:text-gray-900 max-[420px]:text-sm"
             >
               Profile
             </a>
 
             <button
               onClick={logout}
-              className=" text-slate-200 py-2 px-3 rounded-lg font-mediumfont-poppins hover:bg-red-400 "
+              className=" text-slate-200 py-2 px-3 rounded-lg font-mediumfont-poppins hover:bg-red-400 max-[420px]:text-sm"
             >
               Log Out
             </button>
