@@ -3,7 +3,7 @@ import './App.css';
 // import 'tailwindcss/tailwind.css';
 import Homepage from './pages/Homepage';
 import MainPage from './pages/MainPage';
-
+import Collection from './pages/Collection';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import {
@@ -40,8 +40,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
-
           <Route path="/main-page" element={<MainPage />} />
+          <Route path="/collection" element={<Collection />} />
         </Routes>
       </Router>
     </ApolloProvider>
