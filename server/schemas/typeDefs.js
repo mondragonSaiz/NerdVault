@@ -15,6 +15,7 @@ const typeDefs = gql`
     year: String
     releaseType: String
     isEventExclsive: Boolean
+    image: String
   }
 
   type Auth {
@@ -25,6 +26,7 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(_id: ID!): User
+    figures: [Figure]
   }
 
   type Mutation {

@@ -5,7 +5,7 @@
     "year": 2011,
     "releaseType": "Regular",
     "isEventExclsive": false,
-    "image": "../img/collectionImages/goku-shf1.png"
+    "image": "/collectionImages/goku-shf1.png"
   },
   {
     "name": "Vegeta ssj1",
@@ -13,7 +13,7 @@
     "year": 2012,
     "releaseType": "Regular",
     "isEventExclsive": false,
-    "image": "../img/collectionImages/vegeta-shf1.png"
+    "image": "/collectionImages/vegeta-shf1.png"
   },
   {
     "name": "Goku ssj2",
@@ -21,6 +21,6 @@
     "year": 2022,
     "releaseType": "Exclusive",
     "isEventExclsive": true,
-    "image": "../img/collectionImages/goku-sh2.jpeg"
+    "image": "/collectionImages/goku-sh2.png"
   }
 ]
