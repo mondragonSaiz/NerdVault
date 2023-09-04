@@ -3,7 +3,7 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find();
+      return User.find().populate('figures');
     },
 
     user: async (parent, { userId }) => {
@@ -38,6 +38,18 @@ const resolvers = {
       const user = await User.create({ username, email, password });
       const token = signToken(user);
       return { token, user };
+    },
+    addFigure: async (parent, { userId, figureId }) => {
+      try {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: userId },
+          { $addToSet: { figures: figureId } },
+          { new: true }
+        ).populate('figures');
+        return updatedUser;
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 };
