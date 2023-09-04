@@ -22,6 +22,9 @@ const figureSchema = new Schema({
     type: Boolean,
     required: true,
   },
+  image: {
+    type: String,
+  },
 });
 
 const Figure = mongoose.model('Figure', figureSchema);

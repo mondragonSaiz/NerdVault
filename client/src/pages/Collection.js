@@ -4,6 +4,7 @@ import gokushf1 from '../img/collectionImages/goku-shf1.png';
 import vegetashf1 from '../img/collectionImages/vegeta-shf1.png';
 import gokushf2 from '../img/collectionImages/goku-sh2.jpeg';
 export default function Collection() {
+  const url = '../img/collectionImages/goku-shf1.png';
   return (
     <div>
       <main className="bg-gradient-to-t from-orange-500 to-[#000000] px-10 md:px-20 lg:px-40">
@@ -33,7 +34,7 @@ export default function Collection() {
               <div className="rounded xl shadow-lg bg-slate-900 m-4">
                 <div className="p-5 flex flex-col">
                   <div className="rounded-xl overflow-hidden">
-                    <img src={gokushf1} />
+                    <img src={url} />
                   </div>
                   <h5 className="text-2xl md:text-3xl font-medium mt-3 text-slate-300">
                     Goku sjj3
