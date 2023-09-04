@@ -10,6 +10,7 @@ const typeDefs = gql`
   }
 
   type Figure {
+    _id: ID
     name: String
     saga: String
     year: String

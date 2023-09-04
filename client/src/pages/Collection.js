@@ -3,7 +3,8 @@ import Navbar from '../components/Navbar';
 // import gokushf1 from '../img/collectionImages/goku-shf1.png';
 // import vegetashf1 from '../img/collectionImages/vegeta-shf1.png';
 // import gokushf2 from '../img/collectionImages/goku-sh2.jpeg';
-
+import Auth from '../utils/auth';
+import { Navigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_FIGURES } from '../utils/queries';
 export default function Collection() {
@@ -12,14 +13,33 @@ export default function Collection() {
 
   const figures = data?.figures;
 
-  console.log('FIGURE DATA 2', figures || []);
+  const handleFigureClick = ({
+    name,
+    saga,
+    year,
+    releaseType,
+    isEventExclsive,
+    image,
+  }) => {
+    console.log('figure name to add!', name);
+    console.log('figure saga to add!', saga);
+    console.log('figure year to add!', year);
+    console.log('figure type to add!', releaseType);
+    console.log('figure exclusive to add!', isEventExclsive);
+    console.log('figure image to add!', image);
+    // console.log('target', e.target);
+    // console.log('Parent', e.target.parentNode);
+    // const parent = e.target.parentNode;
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
+  if (!Auth.loggedIn()) return <Navigate to="/" />;
   return (
     <div>
       <main className="bg-gradient-to-t from-orange-500 to-[#000000] px-10 md:px-20 lg:px-40">
-        <section className="min-h-screen">
+        <section className="min-h-screen pb-3">
           <Navbar />
           {/* <div class="grid grid-cols-4 gap-4 mt-8 ">
             <div className="text-white">
@@ -57,6 +77,7 @@ export default function Collection() {
                     <p className="text-slate-300 text-lg mt-3">{figure.year}</p>
 
                     <button
+                      onClick={() => handleFigureClick(figure)}
                       className="text-center bg-blue-300 text-slate-900 py-2 rounded-lg font-semibold mt-4 
                   hover:bg-blue-400 hover:text-slate-200  focus:scale-95 transition-all
                   duration-100 ease-out"

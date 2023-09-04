@@ -2,7 +2,7 @@
   {
     "name": "Goku ssj1",
     "saga": "Dragon Ball Z",
-    "year": 2011,
+    "year": "2011",
     "releaseType": "Regular",
     "isEventExclsive": false,
     "image": "/collectionImages/goku-shf1.png"
@@ -10,7 +10,7 @@
   {
     "name": "Vegeta ssj1",
     "saga": "Dragon Ball Z",
-    "year": 2012,
+    "year": "2012",
     "releaseType": "Regular",
     "isEventExclsive": false,
     "image": "/collectionImages/vegeta-shf1.png"
@@ -18,7 +18,7 @@
   {
     "name": "Goku ssj2",
     "saga": "Dragon Ball Z",
-    "year": 2022,
+    "year": "2022",
     "releaseType": "Exclusive",
     "isEventExclsive": true,
     "image": "/collectionImages/goku-sh2.png"

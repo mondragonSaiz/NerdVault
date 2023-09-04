@@ -10,7 +10,7 @@ const figureSchema = new Schema({
     type: String,
     required: true,
   },
-  saga: {
+  year: {
     type: String,
     required: true,
   },
