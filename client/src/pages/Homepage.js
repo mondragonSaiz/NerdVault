@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import CustomModal from '../components/CustomModal';
 import inboxLogo from '../img/dragonballLogo.svg';
-// import gokuLogo from '../img/gokuLogo.svg';
-// import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import AlertModal from '../components/AlertModal';

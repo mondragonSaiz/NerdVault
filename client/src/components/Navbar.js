@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../img/dbLogo.svg';
 import Auth from '../utils/auth';
-
+import { Link } from 'react-router-dom';
 export default function Navbar({ showLoginModal }) {
   const logout = (event) => {
     event.preventDefault();
@@ -26,12 +26,12 @@ export default function Navbar({ showLoginModal }) {
           </li>
         ) : (
           <li>
-            <a
-              href="#"
+            <Link
+              to="/collection"
               className=" text-slate-200 py-2 px-3 rounded-lg font-mediumfont-poppins hover:bg-orange-200 hover:text-gray-900 max-[420px]:text-sm"
             >
               Collection
-            </a>
+            </Link>
             <a
               href="#"
               className=" text-slate-200 py-2 px-3 rounded-lg font-mediumfont-poppins hover:bg-blue-200 hover:text-gray-900 max-[420px]:text-sm"

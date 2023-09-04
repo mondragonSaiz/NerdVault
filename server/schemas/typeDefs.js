@@ -10,11 +10,13 @@ const typeDefs = gql`
   }
 
   type Figure {
+    _id: ID
     name: String
     saga: String
     year: String
     releaseType: String
     isEventExclsive: Boolean
+    image: String
   }
 
   type Auth {
@@ -25,11 +27,13 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(_id: ID!): User
+    figures: [Figure]
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
+    addFigure(userId: ID!, figureId: ID!): User
   }
 `;
 

@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 import caruselImg1 from '../img/homeImages/carusel1.png';
 import caruselImg2 from '../img/homeImages/carusel2.png';
 import caruselImg3 from '../img/homeImages/carusel3.png';
-
+import { Link } from 'react-router-dom';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import { RxDotFilled } from 'react-icons/rx';
 export default function MainPage() {
@@ -47,7 +47,7 @@ export default function MainPage() {
         <section className="min-h-screen">
           <Navbar />
           <div className="flex flex-col mt-10 lg:flex-row lg:justify-evenly">
-            <div className="text-slate-200  font-medium text-base w-5/6 lg:text-2xl lg:w-3/5">
+            <div className="text-slate-200  font-medium text-base w-5/6 lg:text-2xl lg:w-3/5 m-3">
               <h1 className="font-poppins">
                 Step into a world where the legendary warriors of Dragon Ball
                 come to life in a breathtaking display of artistry and
@@ -58,12 +58,15 @@ export default function MainPage() {
                 Vegeta as he stands poised to defend his pride, each figure is a
                 testament to the fusion of design and passion.
               </h1>
-              <button
-                // to="/main-page"
-                className=" bg-slate-200 text-neutral-950 hover:text-orange-500  hover:bg-orange-200 py-2 px-6 font-bold font-poppins rounded-lg lg:text-lg cursor-pointer hover:scale-125 transition duration-300 ease-in-out mt-3"
-              >
-                See collection!
-              </button>
+              <div className="mt-8">
+                {' '}
+                <Link
+                  to="/collection"
+                  className="mt-9 bg-slate-200 text-neutral-950 hover:text-orange-500  hover:bg-orange-200 py-2 px-6 font-bold font-poppins rounded-lg lg:text-lg cursor-pointer hover:scale-125 transition duration-300 ease-in-out "
+                >
+                  See collection!
+                </Link>
+              </div>
             </div>
           </div>
           <div className="max-w-[800px] h-[900px] max-[420px]:max-w-[500px] max-[420px]:h-[500px] w-full m-auto py-16 px-4 bg-cover relative group">
