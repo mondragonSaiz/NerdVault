@@ -39,7 +39,7 @@ const typeDefs = gql`
       password: String!
       userIcon: String!
     ): Auth
-    addFigure(userId: ID!, figureId: ID!): Auth
+    addFigure(figureId: ID!): Auth
   }
 `;
 

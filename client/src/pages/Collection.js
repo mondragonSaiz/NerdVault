@@ -4,14 +4,17 @@ import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_FIGURES } from '../utils/queries';
-
+import { ADD_FIGURE } from '../utils/mutations';
 export default function Collection() {
   const url = '../img/collectionImages/goku-shf1.png';
   const { loading, data } = useQuery(GET_FIGURES);
+  const [addFigure, { error: addFigureError, data: addFigureData }] =
+    useMutation(ADD_FIGURE);
 
   const figures = data?.figures;
 
-  const handleFigureClick = ({
+  const handleFigureClick = async ({
+    _id,
     name,
     saga,
     year,
@@ -19,15 +22,21 @@ export default function Collection() {
     isEventExclsive,
     image,
   }) => {
-    console.log('figure name to add!', name);
-    console.log('figure saga to add!', saga);
-    console.log('figure year to add!', year);
-    console.log('figure type to add!', releaseType);
-    console.log('figure exclusive to add!', isEventExclsive);
-    console.log('figure image to add!', image);
+    console.log('figure ID to add!', _id);
+    // console.log('figure saga to add!', saga);
+    // console.log('figure year to add!', year);
+    // console.log('figure type to add!', releaseType);
+    // console.log('figure exclusive to add!', isEventExclsive);
+    // console.log('figure image to add!', image);
     // console.log('target', e.target);
     // console.log('Parent', e.target.parentNode);
     // const parent = e.target.parentNode;
+    const { data } = addFigure({ variables: { figureId: _id } });
+    console.log('SUCCESFULLY ADDED FIGURE', data);
+    try {
+    } catch (err) {
+      console.log('ERROR WHILE ADDING FIG', err);
+    }
   };
 
   if (loading) {

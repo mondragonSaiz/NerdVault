@@ -33,3 +33,15 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_FIGURE = gql`
+  mutation addFigure($figureId: ID!) {
+    addFigure(figureId: $figureId) {
+      token
+      user {
+        _id
+        username
+      }
+    }
+  }
+`;
