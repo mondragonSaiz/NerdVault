@@ -1,12 +1,10 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
-// import gokushf1 from '../img/collectionImages/goku-shf1.png';
-// import vegetashf1 from '../img/collectionImages/vegeta-shf1.png';
-// import gokushf2 from '../img/collectionImages/goku-sh2.jpeg';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { GET_FIGURES } from '../utils/queries';
+
 export default function Collection() {
   const url = '../img/collectionImages/goku-shf1.png';
   const { loading, data } = useQuery(GET_FIGURES);

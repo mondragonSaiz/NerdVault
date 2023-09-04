@@ -34,15 +34,19 @@ const resolvers = {
         throw err;
       }
     },
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
-      const token = signToken(user);
-      return { token, user };
+    addUser: async (parent, { username, email, password, userIcon }) => {
+      try {
+        const user = await User.create({ username, email, password, userIcon });
+        const token = signToken(user);
+        return { token, user };
+      } catch (err) {
+        console.log(err);
+      }
     },
-    addFigure: async (parent, { userId, figureId }) => {
+    addFigure: async (parent, { figureId }, context) => {
       try {
         const updatedUser = await User.findOneAndUpdate(
-          { _id: userId },
+          { _id: context.user._id },
           { $addToSet: { figures: figureId } },
           { new: true }
         ).populate('figures');
