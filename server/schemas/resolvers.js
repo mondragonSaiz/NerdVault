@@ -9,6 +9,12 @@ const resolvers = {
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
     },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('figures');
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     figures: async () => {
       return Figure.find();
     },

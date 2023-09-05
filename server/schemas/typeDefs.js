@@ -28,6 +28,7 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(_id: ID!): User
+    me: User
     figures: [Figure]
   }
 

@@ -45,7 +45,7 @@ export default function Collection() {
   if (!Auth.loggedIn()) return <Navigate to="/" />;
   return (
     <div>
-      <main className="bg-gradient-to-t from-orange-500 to-[#000000] px-10 md:px-20 lg:px-40">
+      <main className="bg-neutral-950  to-[#000000] px-10 md:px-20 lg:px-40">
         <section className="min-h-screen pb-3">
           <Navbar />
           {/* <div class="grid grid-cols-4 gap-4 mt-8 ">
@@ -72,7 +72,7 @@ export default function Collection() {
               {figures.map((figure) => (
                 <div
                   key={figure.name}
-                  className="rounded xl shadow-lg bg-slate-900 m-4"
+                  className="bg-teal-950 rounded xl shadow-lg  m-4"
                 >
                   <div className="p-5 flex flex-col">
                     <div className="rounded-xl overflow-hidden">
@@ -85,8 +85,8 @@ export default function Collection() {
 
                     <button
                       onClick={() => handleFigureClick(figure)}
-                      className="text-center bg-blue-300 text-slate-900 py-2 rounded-lg font-semibold mt-4 
-                  hover:bg-blue-400 hover:text-slate-200  focus:scale-95 transition-all
+                      className="text-center bg-green-300 text-slate-900 py-2 rounded-lg font-semibold mt-4 
+                  hover:bg-green-400 hover:text-slate-200  focus:scale-95 transition-all
                   duration-100 ease-out"
                     >
                       Add to Collection
@@ -94,136 +94,7 @@ export default function Collection() {
                   </div>
                 </div>
               ))}
-              {/* <div className="rounded xl shadow-lg bg-slate-900 m-4">
-                <div className="p-5 flex flex-col">
-                  <div className="rounded-xl overflow-hidden">
-                    <img src={url} />
-                  </div>
-                  <h5 className="text-2xl md:text-3xl font-medium mt-3 text-slate-300">
-                    Goku sjj3
-                  </h5>
-                  <p className="text-slate-300 text-lg mt-3">2012</p>
 
-                  <button
-                    className="text-center bg-blue-300 text-slate-900 py-2 rounded-lg font-semibold mt-4 
-                  hover:bg-blue-400 hover:text-slate-200  focus:scale-95 transition-all
-                  duration-100 ease-out"
-                  >
-                    Add to Collection
-                  </button>
-                </div>
-              </div> */}
-              {/* <div className="rounded xl shadow-lg bg-slate-900 m-4">
-                <div className="p-5 flex flex-col">
-                  <div className="rounded-xl overflow-hidden">
-                    <img src={vegetashf1} />
-                  </div>
-                  <h5 className="text-2xl md:text-3xl font-medium mt-3 text-slate-300">
-                    Goku sjj3
-                  </h5>
-                  <p className="text-slate-300 text-sm mt-3">
-                    Release date: 2012
-                  </p>
-
-                  <button
-                    className="text-center bg-blue-300 text-slate-900 py-2 rounded-lg font-semibold mt-4 
-                  hover:bg-blue-400 hover:text-slate-200 focus:scale-95 transition-all
-                  duration-100 ease-out"
-                  >
-                    Add to Collection
-                  </button>
-                </div>
-              </div> */}
-              {/* <div className="rounded xl shadow-lg bg-slate-900 m-4">
-                <div className="p-5 flex flex-col">
-                  <div className="rounded-xl overflow-hidden">
-                    <img src={gokushf2} />
-                  </div>
-                  <h5 className="text-2xl md:text-3xl font-medium mt-3 text-slate-300">
-                    Goku sjj3
-                  </h5>
-                  <p className=" text-lg mt-3 text-slate-300">2012</p>
-                  <button
-                    className="text-center bg-blue-300 text-slate-900 py-2 rounded-lg font-semibold mt-4 
-                  hover:bg-blue-400 hover:text-slate-200 focus:scale-95 transition-all
-                  duration-100 ease-out"
-                  >
-                    Add to Collection
-                  </button>
-                </div>
-              </div> */}
-              {/* <div className="rounded xl shadow-lg bg-slate-900 m-4">
-                <div className="p-5 flex flex-col">
-                  <div className="rounded-xl overflow-hidden">
-                    <img src={gokushf2} />
-                  </div>
-                  <h5 className="text-2xl md:text-3xl font-medium mt-3 text-slate-300">
-                    Goku sjj3
-                  </h5>
-                  <p className=" text-lg mt-3 text-slate-300">2012</p>
-                  <button
-                    className="text-center bg-blue-300 text-slate-900 py-2 rounded-lg font-semibold mt-4 
-                  hover:bg-blue-400 hover:text-slate-200 focus:scale-95 transition-all
-                  duration-100 ease-out"
-                  >
-                    Add to Collection
-                  </button>
-                </div>
-              </div> */}
-              {/* <div className="rounded xl shadow-lg bg-slate-900 m-4">
-                <div className="p-5 flex flex-col">
-                  <div className="rounded-xl overflow-hidden">
-                    <img src={gokushf2} />
-                  </div>
-                  <h5 className="text-2xl md:text-3xl font-medium mt-3 text-slate-300">
-                    Goku sjj3
-                  </h5>
-                  <p className=" text-lg mt-3 text-slate-300">2012</p>
-                  <button
-                    className="text-center bg-blue-300 text-slate-900 py-2 rounded-lg font-semibold mt-4 
-                  hover:bg-blue-400 hover:text-slate-200 focus:scale-95 transition-all
-                  duration-100 ease-out"
-                  >
-                    Add to Collection
-                  </button>
-                </div>
-              </div> */}
-              {/* <div className="rounded xl shadow-lg bg-slate-900 m-4">
-                <div className="p-5 flex flex-col">
-                  <div className="rounded-xl overflow-hidden">
-                    <img src={gokushf2} />
-                  </div>
-                  <h5 className="text-2xl md:text-3xl font-medium mt-3 text-slate-300">
-                    Goku sjj3
-                  </h5>
-                  <p className=" text-lg mt-3 text-slate-300">2012</p>
-                  <button
-                    className="text-center bg-blue-300 text-slate-900 py-2 rounded-lg font-semibold mt-4 
-                  hover:bg-blue-400 hover:text-slate-200 focus:scale-95 transition-all
-                  duration-100 ease-out"
-                  >
-                    Add to Collection
-                  </button>
-                </div>
-              </div> */}
-              {/* <div className="rounded xl shadow-lg bg-slate-900 m-4">
-                <div className="p-5 flex flex-col">
-                  <div className="rounded-xl overflow-hidden">
-                    <img src={gokushf2} />
-                  </div>
-                  <h5 className="text-2xl md:text-3xl font-medium mt-3 text-slate-300">
-                    Goku sjj3
-                  </h5>
-                  <p className=" text-lg mt-3 text-slate-300">2012</p>
-                  <button
-                    className="text-center bg-blue-300 text-slate-900 py-2 rounded-lg font-semibold mt-4 
-                  hover:bg-blue-400 hover:text-slate-200 focus:scale-95 transition-all
-                  duration-100 ease-out"
-                  >
-                    Add to Collection
-                  </button>
-                </div>
-              </div> */}
               {/* <div className="rounded xl shadow-lg bg-slate-900 m-4">
                 <div className="p-5 flex flex-col">
                   <div className="rounded-xl overflow-hidden">
