@@ -41,6 +41,7 @@ const typeDefs = gql`
       userIcon: String!
     ): Auth
     addFigure(figureId: ID!): Auth
+    removeFigure(figureId: ID!): Auth
   }
 `;
 

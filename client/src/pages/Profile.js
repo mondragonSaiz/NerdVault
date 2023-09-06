@@ -1,15 +1,28 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
+import { REMOVE_FIGURE } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
 export default function Profile() {
   const { loading, data } = useQuery(QUERY_ME);
+  const [removeFigure, { error }] = useMutation(REMOVE_FIGURE);
+
   const user = data?.me || [];
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const handleRemoveClick = ({ _id }) => {
+    try {
+      localStorage.removeItem(`${_id}-${user._id}`);
+      const { data } = removeFigure({ variables: { figureId: _id } });
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   console.log('MY DATA', user);
   if (!Auth.loggedIn()) return <Navigate to="/" />;
@@ -50,7 +63,7 @@ export default function Profile() {
                     <p className="text-slate-300 text-lg mt-3">{figure.year}</p>
 
                     <button
-                      // onClick={() => handleFigureClick(figure)}
+                      onClick={() => handleRemoveClick(figure)}
                       className="text-center bg-red-300 text-slate-900 py-2 rounded-lg font-semibold mt-4 
                   hover:bg-red-400 hover:text-slate-200  focus:scale-95 transition-all
                   duration-100 ease-out"

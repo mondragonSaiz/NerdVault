@@ -45,3 +45,24 @@ export const ADD_FIGURE = gql`
     }
   }
 `;
+
+export const REMOVE_FIGURE = gql`
+  mutation removeFigure($figureId: ID!) {
+    removeFigure(figureId: $figureId) {
+      token
+      user {
+        _id
+        username
+        figures {
+          _id
+          name
+          saga
+          year
+          releaseType
+          isEventExclsive
+          image
+        }
+      }
+    }
+  }
+`;

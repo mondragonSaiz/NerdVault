@@ -56,7 +56,21 @@ const resolvers = {
           { $addToSet: { figures: figureId } },
           { new: true }
         ).populate('figures');
-        return updatedUser;
+        const token = signToken(updatedUser);
+        return { token, updatedUser };
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    removeFigure: async (parent, { figureId }, context) => {
+      try {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { figures: figureId } },
+          { new: true }
+        ).populate('figures');
+        const token = signToken(updatedUser);
+        return { token, updatedUser };
       } catch (err) {
         console.log(err);
       }
