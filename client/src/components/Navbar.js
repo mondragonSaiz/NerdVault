@@ -32,12 +32,12 @@ export default function Navbar({ showLoginModal }) {
             >
               Collection
             </Link>
-            <a
-              href="#"
+            <Link
+              to="/profile"
               className=" text-slate-200 py-2 px-3 rounded-lg font-mediumfont-poppins hover:bg-blue-200 hover:text-gray-900 max-[420px]:text-sm"
             >
               Profile
-            </a>
+            </Link>
 
             <button
               onClick={logout}

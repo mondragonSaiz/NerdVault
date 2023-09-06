@@ -9,6 +9,12 @@ const resolvers = {
     user: async (parent, { userId }) => {
       return User.findOne({ _id: userId });
     },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('figures');
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     figures: async () => {
       return Figure.find();
     },
@@ -34,19 +40,37 @@ const resolvers = {
         throw err;
       }
     },
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
-      const token = signToken(user);
-      return { token, user };
+    addUser: async (parent, { username, email, password, userIcon }) => {
+      try {
+        const user = await User.create({ username, email, password, userIcon });
+        const token = signToken(user);
+        return { token, user };
+      } catch (err) {
+        console.log(err);
+      }
     },
-    addFigure: async (parent, { userId, figureId }) => {
+    addFigure: async (parent, { figureId }, context) => {
       try {
         const updatedUser = await User.findOneAndUpdate(
-          { _id: userId },
+          { _id: context.user._id },
           { $addToSet: { figures: figureId } },
           { new: true }
         ).populate('figures');
-        return updatedUser;
+        const token = signToken(updatedUser);
+        return { token, updatedUser };
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    removeFigure: async (parent, { figureId }, context) => {
+      try {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { figures: figureId } },
+          { new: true }
+        ).populate('figures');
+        const token = signToken(updatedUser);
+        return { token, updatedUser };
       } catch (err) {
         console.log(err);
       }

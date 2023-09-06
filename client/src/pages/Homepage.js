@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import CustomModal from '../components/CustomModal';
 import inboxLogo from '../img/dragonballLogo.svg';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import {
+  disableExperimentalFragmentVariables,
+  useMutation,
+} from '@apollo/client';
+import { LOGIN_USER, ADD_USER } from '../utils/mutations';
 import AlertModal from '../components/AlertModal';
 import Auth from '../utils/auth';
 import { Link } from 'react-router-dom';
@@ -21,11 +24,23 @@ import chaoPic from '../img/profilepic/chao-pp.png';
 import bulmaPic from '../img/profilepic/bulma-pp.png';
 export default function Homepage() {
   const [formState, setFormState] = useState({ email: '', password: '' });
+
+  const [username, setUsernameState] = useState('');
+  const [email, setEmailState] = useState('');
+  const [password, setPasswordState] = useState('');
+  const [confirmPasswordState, setConfirmPasswordState] = useState('');
+  const [userIcon, setUserIcon] = useState('');
+  // const [signUpState, setSignUpState] = useState({
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  //   userIcon: '',
+  // });
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
-  const [userIcon, setUserIcon] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleImageClick = (src) => {
     setUserIcon(src);
@@ -134,6 +149,69 @@ export default function Homepage() {
       email: '',
       password: '',
     });
+  };
+
+  const handleSignUpFormChange = (e) => {
+    const { name, value } = e.target;
+    switch (name) {
+      case 'username':
+        setUsernameState(value);
+        break;
+      case 'email':
+        setEmailState(value);
+        break;
+      case 'password':
+        setPasswordState(value);
+        break;
+      case 'confirmPassword':
+        setConfirmPasswordState(value);
+        break;
+    }
+  };
+  const validation = (name, value) => {
+    let regPassword = /((?=.*[A-Z])(?=.*[a-z])(?=.*\d))(?=.{8,})/; //Password should include at least 8 char, 1 cap, and 1 low case
+    let regEmail = /^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/;
+
+    if (name === 'password') {
+      return regPassword.test(value);
+    } else if (name === 'email') {
+      return regEmail.test(value);
+    } else if (name === 'name') {
+      if (!value) {
+        setErrorMessage('Name Missing');
+      }
+    }
+  };
+  const [addUser, { error: addUserError, data: addUserData }] =
+    useMutation(ADD_USER);
+  const handleSignUpSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      console.log('SUBMIT TRIGGGERED');
+      console.log('1', username);
+      console.log('2', email);
+      console.log('3', password);
+      console.log('4', userIcon);
+      if (!username) {
+        setErrorMessage('Plase provide a valid username');
+        return;
+      } else if (!email || !validation('email', email)) {
+        setErrorMessage('Plase provide a valid email');
+        return;
+      } else if (!password || !validation('password', password)) {
+        setErrorMessage('Plase provide a valid password');
+        return;
+      } else if (password !== confirmPasswordState) {
+        setErrorMessage('Please double check your password');
+        return;
+      }
+      const { data } = await addUser({
+        variables: { username, email, password, userIcon },
+      });
+      Auth.login(data.addUser.token);
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     //  linear-gradient(329deg, #090a0a 0%, #ffc049 100%);
@@ -276,6 +354,8 @@ export default function Homepage() {
                 type="text"
                 name="username"
                 id="username"
+                value={username}
+                onChange={handleSignUpFormChange}
                 className="bg-gra-50 border border-gray-300 text-gray-900 text-sm 
                 rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                 placeholder="Username"
@@ -288,6 +368,8 @@ export default function Homepage() {
                 type="email"
                 name="email"
                 id="email"
+                value={email}
+                onChange={handleSignUpFormChange}
                 className="bg-gra-50 border border-gray-300 text-gray-900 text-sm 
                 rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                 placeholder="name@email.com"
@@ -300,6 +382,8 @@ export default function Homepage() {
                 type="password"
                 name="password"
                 id="password"
+                value={password}
+                onChange={handleSignUpFormChange}
                 className="bg-gra-50 border border-gray-300 text-gray-900 text-sm 
                 rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                 placeholder="Enter password"
@@ -309,9 +393,11 @@ export default function Homepage() {
             <div>
               <label htmlFor="confirmPassword" className=""></label>{' '}
               <input
-                type="confirmPassword"
+                type="password"
                 name="confirmPassword"
                 id="confirmPassword"
+                value={confirmPasswordState}
+                onChange={handleSignUpFormChange}
                 className="bg-gra-50 border border-gray-300 text-gray-900 text-sm 
                 rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
                 placeholder="Confirm password"
@@ -338,6 +424,7 @@ export default function Homepage() {
             </div>
             <button
               type="submit"
+              onClick={handleSignUpSubmit}
               className="w-full text-white bg-orange-700 hover:bg-orange-800 
               focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
               rounde-lg text-sm px-5 py-2.5 text-center"

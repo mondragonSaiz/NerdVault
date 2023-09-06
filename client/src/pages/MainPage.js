@@ -43,7 +43,7 @@ export default function MainPage() {
   if (!Auth.loggedIn()) return <Navigate to="/" />;
   return (
     <div>
-      <main className="bg-gradient-to-t from-orange-500 to-[#000000] px-10 md:px-20 lg:px-40">
+      <main className="bg-neutral-950  to-[#000000] px-10 md:px-20 lg:px-40">
         <section className="min-h-screen">
           <Navbar />
           <div className="flex flex-col mt-10 lg:flex-row lg:justify-evenly">

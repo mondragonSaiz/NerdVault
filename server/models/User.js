@@ -18,6 +18,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  userIcon: {
+    type: String,
+  },
   figures: [
     {
       type: Schema.Types.ObjectId,
