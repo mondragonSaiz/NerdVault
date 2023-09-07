@@ -18,7 +18,7 @@ const figureData = require('./figuresData.json');
 const seeds = async () => {
   await Figure.deleteMany({});
   await Figure.create(figureData);
-  console.log('all done!');
+
   process.exit(0);
 };
 
