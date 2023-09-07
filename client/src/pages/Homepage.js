@@ -217,8 +217,8 @@ export default function Homepage() {
     //  linear-gradient(329deg, #090a0a 0%, #ffc049 100%);
 
     <div>
-      <main className="bg-gradient-to-t from-orange-500 to-[#000000] px-10 md:px-20 lg:px-40">
-        <section className="min-h-screen">
+      <main className=" min-h-screen bg-gradient-to-t from-orange-500 to-[#000000] px-10 md:px-20 lg:px-40">
+        <section className="h-[100vh] overflow-auto">
           <Navbar showLoginModal={() => setShowLoginModal(true)} />
           <div className="flex flex-col mt-10 lg:flex-row lg:justify-evenly">
             <div className="text-slate-200 font-bold text-6xl w-5/6 lg:text-8xl lg:w-3/5">
@@ -343,11 +343,11 @@ export default function Homepage() {
         isVisible={showSignUpModal}
         onClose={() => setShowSignUpModal(false)}
       >
-        <div className="py-6 px-6 lg:px-8 text-left">
-          <h3 className="mb-4 text-xl font-medium text-gray-900">
+        <div className="py-4 px-6 lg:px-8 text-left">
+          <h3 className="mb-4 text-xl font-medium max-[420px]:text-base  text-gray-900 ">
             Create your account!
           </h3>
-          <form className="space-y-6" action="#">
+          <form className="space-y-4" action="#">
             <div>
               <label htmlFor="username" className=""></label>{' '}
               <input
@@ -356,8 +356,8 @@ export default function Homepage() {
                 id="username"
                 value={username}
                 onChange={handleSignUpFormChange}
-                className="bg-gra-50 border border-gray-300 text-gray-900 text-sm 
-                rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
+                className="bg-gra-50 border  border-gray-300 text-gray-900 text-sm 
+                rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2"
                 placeholder="Username"
                 required
               ></input>
@@ -371,7 +371,7 @@ export default function Homepage() {
                 value={email}
                 onChange={handleSignUpFormChange}
                 className="bg-gra-50 border border-gray-300 text-gray-900 text-sm 
-                rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
+                rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2"
                 placeholder="name@email.com"
                 required
               ></input>
@@ -385,7 +385,7 @@ export default function Homepage() {
                 value={password}
                 onChange={handleSignUpFormChange}
                 className="bg-gra-50 border border-gray-300 text-gray-900 text-sm 
-                rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
+                rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2"
                 placeholder="Enter password"
                 required
               ></input>
@@ -399,19 +399,19 @@ export default function Homepage() {
                 value={confirmPasswordState}
                 onChange={handleSignUpFormChange}
                 className="bg-gra-50 border border-gray-300 text-gray-900 text-sm 
-                rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5"
+                rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2"
                 placeholder="Confirm password"
                 required
               ></input>
             </div>
-            <p className=" text-gray-400 flex justify-center text-lg font-bold">
+            <p className="max-[420px]:text-base  text-gray-400 flex justify-center text-lg font-bold">
               Choose your avatar
             </p>
             <div className=" h-[300px] flex  md:flex-row md:flex-wrap md:gap-10 justify-center items-center max-[420px]:flex-row max-[420px]:flex-wrap max-[420px]:w-[300px] lg:flex-row lg:gap-6 overflow-auto">
               {userIcons.map((icon, index) => (
                 <div
                   key={index}
-                  className={`bg-slate-200 rounded-full lg:w-40 lg:h-30 w-60 h-30 mt-10 max-[420px]:h-30 max-[420px]:w-40
+                  className={`bg-slate-200 rounded-full lg:w-40 lg:h-30 w-60 h-30 mt-10 max-[420px]:h-[100px] max-[420px]:w-[120px] 
                     overflow-hidden hover:transition hover:scale-110 transition
                     duration-300 ease-in-out cursor-pointer${
                       icon.src === userIcon ? ' selected' : ''
@@ -427,7 +427,7 @@ export default function Homepage() {
               onClick={handleSignUpSubmit}
               className="w-full text-white bg-orange-700 hover:bg-orange-800 
               focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
-              rounde-lg text-sm px-5 py-2.5 text-center"
+              rounde-lg text-sm px-5 py-2 text-center"
             >
               Create account
             </button>
