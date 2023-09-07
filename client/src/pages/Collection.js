@@ -97,7 +97,14 @@ export default function Collection() {
                     <h5 className="text-2xl md:text-3xl font-medium mt-3 text-slate-300">
                       {figure.name}
                     </h5>
-                    <p className="text-slate-300 text-lg mt-3">{figure.year}</p>
+                    <p className="text-slate-500  text-lg mt-3">
+                      {figure.saga}
+                    </p>
+                    <p className="text-slate-500 text-lg mt-3">
+                      {figure.releaseType}
+                    </p>
+
+                    <p className="text-slate-500 text-lg mt-3">{figure.year}</p>
 
                     <button
                       onClick={() => handleFigureClick(figure, index)}
