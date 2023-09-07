@@ -3,7 +3,7 @@ const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
-const seeds = require('./seeders/seed');
+// const seeds = require('./seeders/seed');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
@@ -41,7 +41,7 @@ const startApolloServer = async () => {
       console.log(`API server running on port ${PORT}!`);
       console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
     });
-    seeds();
+    // seeds();
   });
 };
 
