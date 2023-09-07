@@ -1,17 +1,19 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
+import LoadingPage from '../components/LoadingPage';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { REMOVE_FIGURE } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { Navigate } from 'react-router-dom';
+
 export default function Profile() {
   const { loading, data } = useQuery(QUERY_ME);
   const [removeFigure, { error }] = useMutation(REMOVE_FIGURE);
 
   const user = data?.me || [];
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingPage />;
   }
 
   const handleRemoveClick = ({ _id }) => {
