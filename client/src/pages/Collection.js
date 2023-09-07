@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_FIGURES, QUERY_ME } from '../utils/queries';
 import { ADD_FIGURE } from '../utils/mutations';
-
+import LoadingPage from '../components/LoadingPage';
 export default function Collection() {
   const [isDisabledArray, setIsDisabledArray] = useState([]);
   const { loading, data } = useQuery(GET_FIGURES);
@@ -64,7 +64,7 @@ export default function Collection() {
   };
 
   if (loading || userLoading) {
-    return <div>Loading...</div>;
+    return <LoadingPage />;
   }
   if (!Auth.loggedIn()) return <Navigate to="/" />;
 
