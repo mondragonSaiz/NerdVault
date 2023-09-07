@@ -218,7 +218,7 @@ export default function Homepage() {
 
     <div>
       <main className=" min-h-screen bg-gradient-to-t from-orange-500 to-[#000000] px-10 md:px-20 lg:px-40">
-        <section className="h-[100vh] overflow-auto">
+        <section className="h-[100%] ">
           <Navbar showLoginModal={() => setShowLoginModal(true)} />
           <div className="flex flex-col mt-10 lg:flex-row lg:justify-evenly">
             <div className="text-slate-200 font-bold text-6xl w-5/6 lg:text-8xl lg:w-3/5">
