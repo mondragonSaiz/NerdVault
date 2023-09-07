@@ -53,7 +53,7 @@ export default function Profile() {
             <option>Dragon Ball Super</option>
             <option>Dragon Ball GT</option>
           </select>
-          <div className="flex flex-row max-w-[900px]  max-h-[800px] m-auto overflow-auto pt-5 pb-5">
+          <div className="flex flex-row max-w-[900px]  max-h-[1200px] m-auto overflow-auto  pt-5 pb-5">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {' '}
               {user.figures.map((figure) => (
