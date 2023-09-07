@@ -31,10 +31,18 @@ export default function Profile() {
       <main className="bg-neutral-950 to-[#000000] px-10 md:px-20 lg:px-40">
         <section className="min-h-screen pb-3">
           <Navbar />
+          <div className="flex flex-col justify-center items-center">
+            {' '}
+            <div>
+              <img className="w-[120px] overflow-hidden" src={user.userIcon} />
+            </div>
+            <div>
+              <h1 className="text-slate-200 font-medium text-2xl">
+                {`${user.username}'s Collection`}
+              </h1>
+            </div>
+          </div>
 
-          <h1 className="text-slate-200 font-medium text-2xl">
-            {`${user.username}'s Collection`}
-          </h1>
           <select
             className="bg-slate-900 text-white rounded-lg border py-1 px-2 mt-3 mb-3"
             defaultValue
@@ -60,7 +68,14 @@ export default function Profile() {
                     <h5 className="text-2xl md:text-3xl font-medium mt-3 text-slate-300">
                       {figure.name}
                     </h5>
-                    <p className="text-slate-300 text-lg mt-3">{figure.year}</p>
+                    <p className="text-slate-500  text-lg mt-3">
+                      {figure.saga}
+                    </p>
+                    <p className="text-slate-500 text-lg mt-3">
+                      {figure.releaseType}
+                    </p>
+
+                    <p className="text-slate-500 text-lg mt-3">{figure.year}</p>
 
                     <button
                       onClick={() => handleRemoveClick(figure)}
