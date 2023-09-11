@@ -36,17 +36,20 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
       } catch (err) {
-        console.log('Login Error:', err);
         throw err;
       }
     },
     addUser: async (parent, { username, email, password, userIcon }) => {
       try {
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+          throw new AuthenticationError('Email already in use');
+        }
         const user = await User.create({ username, email, password, userIcon });
         const token = signToken(user);
         return { token, user };
       } catch (err) {
-        console.log(err);
+        throw err;
       }
     },
     addFigure: async (parent, { figureId }, context) => {
@@ -59,7 +62,7 @@ const resolvers = {
         const token = signToken(updatedUser);
         return { token, updatedUser };
       } catch (err) {
-        console.log(err);
+        throw err;
       }
     },
     removeFigure: async (parent, { figureId }, context) => {
@@ -72,7 +75,7 @@ const resolvers = {
         const token = signToken(updatedUser);
         return { token, updatedUser };
       } catch (err) {
-        console.log(err);
+        throw err;
       }
     },
   },
